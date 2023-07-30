@@ -1,18 +1,10 @@
-all login details for NEWS_BUZZ --->
+all login details for DISSEL --->
 
 
 Super-Admin:->
 
 username: superadmin
-password: superadmin
+password: 1234
 
-Admin:->
 
-username: admin
-password: adminpass
-
-User:->
-
-username: user
-password: userpass 
 

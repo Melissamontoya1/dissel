@@ -26,8 +26,8 @@ if( isset($_GET['email'])  && isset($_GET['token']) ){
                 <div class="mb-3">
                     <label for="c" class="form-label">Codigo</label>
                     <input type="number" class="form-control" id="c" name="codigo">
-                    <input type="text" class="form-control" id="c" name="email" value="<?php echo $email;?>">
-                    <input type="text" class="form-control" id="c" name="token" value="<?php echo $token;?>">
+                    <input type="hidden" class="form-control" id="c" name="email" value="<?php echo $email;?>">
+                    <input type="hidden" class="form-control" id="c" name="token" value="<?php echo $token;?>">
                 </div>
                
                 <button type="submit" class="btn btn-primary">Restablecer</button>

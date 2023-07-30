@@ -1,22 +1,7 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 require 'mail/autoload.php';
-
-$mail = new PHPMailer(true);
-
-
-	$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-	$mail->isSMTP();
-	$mail->Host = 'smtp.hostinger.com';
-	$mail->SMTPAuth = true;
-	$mail->Username = 'dissel@aylriesgosyseguros.com';
-	$mail->Password = 'Dissel@2023';
-	$mail->SMTPSecure = 'ssl';
-	$mail->Port = 465;
+require ('includes/configmail.php');
 
 	$mail->setFrom('dissel@aylriesgosyseguros.com', 'Alarmas Dissel');
 

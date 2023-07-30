@@ -1,5 +1,5 @@
 <?php
-include('includes/connection.php');
+include('admin/includes/connection.php');
 if (isset($_POST['register'])) {
 require "gump.class.php";
 $gump = new GUMP();

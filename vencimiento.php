@@ -1,5 +1,5 @@
 <?php
-include('includes/connection.php');
+include('admin/includes/connection.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -7,18 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'admin/mail/autoload.php';
 
-$mail = new PHPMailer(true);
-
-
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-$mail->isSMTP();
-$mail->Host = 'smtp.hostinger.com';
-$mail->SMTPAuth = true;
-$mail->Username = 'dissel@aylriesgosyseguros.com';
-$mail->Password = 'Dissel@2023';
-$mail->SMTPSecure = 'ssl';
-$mail->Port = 465;
-$mail->CharSet = 'UTF-8';
+require 'admin/includes/config_mail.php';
 
 $mail->setFrom('dissel@aylriesgosyseguros.com', 'Seguridad Dissel');
     //$mail->addAddress($email);
@@ -26,7 +15,7 @@ $mail->setFrom('dissel@aylriesgosyseguros.com', 'Seguridad Dissel');
 
 $empresas = "SELECT * FROM users WHERE role ='superadmin'";
 
-if ($result = $conn->query($empresas)) {
+if ($result = $sqlconnection->query($empresas)) {
 
     if ($result->num_rows > 0) {
       while($fila = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -76,7 +65,7 @@ if ($result = $conn->query($empresas)) {
 
     $vehi = "SELECT * FROM vehiculo";
 
-    if ($result2 = $conn->query($vehi)) {
+    if ($result2 = $sqlconnection->query($vehi)) {
 
         if ($result2->num_rows > 0) {
           while($rw = $result2->fetch_array(MYSQLI_ASSOC)) {
@@ -122,19 +111,19 @@ $mail->send();
 
 echo 'Correo enviado';
 $query = "INSERT INTO vencimiento(fecha_vencimiento) VALUES ('$fechaActual')";
-if ($conn->query($query) === TRUE) {
+if ($sqlconnection->query($query) === TRUE) {
      echo "<script> 
-     window.location.href='index.php'; </script>";
+     window.location.href='../index.php'; </script>";
 
  }else {              //handle
     echo "Error al guardar los datos";
-    echo $conn->error;
+    echo $sqlconnection->error;
     
 }
 
 
 
-}else{  echo $conn->error;
+}else{  echo $sqlconnection->error;
     echo "ERROR al enviar el correo";
 }
 

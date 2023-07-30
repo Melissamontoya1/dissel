@@ -48,7 +48,7 @@ if ($result = $sqlconnection->query($empresas)) {
         }
     }else{
         echo $sqlconnection->error;
-        echo "ERROR al mostrar las empresas";
+        //echo "ERROR al mostrar las empresas";
     }
 }
 ?>

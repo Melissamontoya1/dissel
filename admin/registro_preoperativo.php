@@ -75,12 +75,12 @@ else {
 
 					while($fila = $result33->fetch_array(MYSQLI_ASSOC)) {
 						$id_vehiculo=$fila['id_vehiculo'];
-						$placa=$fila['placa'];
+						$placav=$fila['placa'];
 					}
 				}
 				 $fecha = date('Y-m-d');
-				 	$titulo_correo="REVISAR REGISTRO VEHICULO PLACA ".$placa." DEL DIA".$fecha;
-						$mensaje_correo="El registro Preoperativo del vehiculo con placas".$placa." contiene inconsistencias, por favor revisar el registro del dia ".$fecha." para verificar las fallas alli reportadas";
+				 	$titulo_correo="REVISAR REGISTRO VEHICULO PLACA ".$placav." DEL DIA".$fecha;
+						$mensaje_correo="El registro Preoperativo del vehiculo con placas".$placav." contiene inconsistencias, por favor revisar el registro del dia ".$fecha." para verificar las fallas alli reportadas";
 						include ('reportar_incidente.php');
 					}
 					$query = "INSERT INTO registro(baja, alta, stop, direccionales, pito, frenos, guaya_acelerador, guaya_clutch, estado_llantas, nivel_aceite, kit_arrastre, chaleco, espejos, combustible, boton_panico, soat, tecnomecanica, tarjeta_propiedad, observaciones,firma, id_vehiculo_a_fk) VALUES ('$baja','$alta' , '$stop' , '$direccionales' , '$pito', '$frenos' , '$guaya_acelerador','$guaya_clutch','$estado_llantas','$nivel_aceite','$kit_arrastre','$chaleco','$espejos','$combustible','$boton_panico','$soat','$tecnomecanica','$tarjeta_propiedad','$observaciones','$fileName','$id_vehiculo_a_fk')";

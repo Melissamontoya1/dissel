@@ -1,31 +1,15 @@
 <?php  
-include('includes/connection.php');
+include('admin/includes/connection.php');
 $email = $_POST['email'];
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 require 'admin/mail/autoload.php';
-
-$mail = new PHPMailer(true);
-
-
-$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-$mail->isSMTP();
-$mail->Host = 'smtp.hostinger.com';
-$mail->SMTPAuth = true;
-$mail->Username = 'dissel@aylriesgosyseguros.com';
-$mail->Password = 'Dissel@2023';
-$mail->SMTPSecure = 'ssl';
-$mail->Port = 465;
-$mail->CharSet = 'UTF-8';
+require ('admin/includes/configmail.php');
 
     $mail->setFrom('dissel@aylriesgosyseguros.com', 'Seguridad Dissel');
     $mail->addAddress($email);
     $mail->isHTML(true);
 $codigo= rand(1000,9999);
 $query = "SELECT * FROM users where email = '$email' ";
-$result = $conn->query($query);
+$result = $sqlconnection->query($query);
 $row = $result->fetch_assoc();
 
 if($result->num_rows > 0){

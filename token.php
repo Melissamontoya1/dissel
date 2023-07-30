@@ -1,10 +1,10 @@
 <?php 
-       include('includes/connection.php');
+       include('admin/includes/connection.php');
     $email =$_POST['email'];
     $token =$_POST['token'];
     $codigo =$_POST['codigo'];
-    $res=$conn->query("select * from tokens where 
-        email='$email' and token='$token' and codigo=$codigo")or die($conn->error);
+    $res=$sqlconnection->query("SELECT * FROM tokens WHERE 
+        email='$email' and token='$token' and codigo='$codigo'")or die($sqlconnection->error);
     $correcto=false;
     if(mysqli_num_rows($res) > 0){
         $fila = mysqli_fetch_row($res);
@@ -24,18 +24,8 @@
    
    
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cambiar password </title>
-    <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-</head>
-<body>
+ include "includes/header.php"; ?>
+
     <div class="container">
         <div class="row justify-content-md-center" style="margin-top:15%">
             <?php if($correcto){ ?>
@@ -61,8 +51,7 @@
 
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    
+<?php include "includes/footer.php" ?>
 </body>
 </html>

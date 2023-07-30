@@ -1,13 +1,13 @@
 <?php
 session_start();
-include('includes/connection.php');
+include('admin/includes/connection.php');
 if (isset($_POST['login'])) {
 	$username  = $_POST['user_name'];
 	$password = $_POST['user_password'];
-	mysqli_real_escape_string($conn, $username);
-	mysqli_real_escape_string($conn, $password);
+	mysqli_real_escape_string($sqlconnection, $username);
+	mysqli_real_escape_string($sqlconnection, $password);
 $query = "SELECT * FROM users WHERE username = '$username'";
-$result = mysqli_query($conn , $query) or die (mysqli_error($conn));
+$result = mysqli_query($sqlconnection , $query) or die (mysqli_error($sqlconnection));
 if (mysqli_num_rows($result) > 0) {
 	while ($row = mysqli_fetch_array($result)) {
 		$id = $row['id'];

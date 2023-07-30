@@ -1,9 +1,9 @@
 <?php 
-include('includes/connection.php');
+include('admin/includes/connection.php');
 $fechaActual = date('Y-m-d');
 $verificar = "SELECT * FROM vencimiento WHERE fecha_vencimiento ='$fechaActual'";
 
-if ($result = $conn->query($verificar)) {
+if ($result = $sqlconnection->query($verificar)) {
 
 	if ($result->num_rows == 0) {
 		

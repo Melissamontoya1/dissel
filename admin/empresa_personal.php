@@ -127,34 +127,30 @@ if (isset($_POST['firma_gerente'])) {
 									<form  id="edititemform" action="" method="POST">
 										<div class="form-row border-bottom-info">
 											<div class="form-group col-md-6">
-												<input type="hidden" name="id_empresa" value="<?php echo $id_empresa ?>" class="form-control ">
+												<input type="hidden" name="id_empresa" value="<?php echo $id_empresa ?>" class="form-control " id="id_anterior">
 												<label for="inputEmail4">Nombre Empresa</label>
-												<input type="text" name="nombre_empresa" value="<?php echo $nombre_empresa ?>" class="form-control ">
+												<input type="text" name="nombre_empresa" value="<?php echo $nombre_empresa ?>" class="form-control " id="nombre_empresa">
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputPassword4">Nit Empresa</label>
-												<input type="text" name="id_empresa" value="<?php echo $id_empresa ?>" class="form-control">
-											</div>
-											<div class="form-group col-md-6">
-												<label for="inputPassword4">Siglas Empresa</label>
-												<input type="text" name="siglas_empresa" value="<?php echo $siglas_empresa ?>" class="form-control">
+												<input type="text" name="id_empresa" value="<?php echo $id_empresa ?>" class="form-control" id="id_empresa" readonly>
 											</div>
 
 											<div class="form-group col-md-6">
 												<label for="inputAddress">Dirección</label>
-												<input type="text" name="direccion_empresa" value="<?php echo $direccion_empresa ?>" class="form-control ">
+												<input type="text" name="direccion_empresa" value="<?php echo $direccion_empresa ?>" class="form-control " id="direccion_empresa">
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputAddress2">Telefono </label>
-												<input type="text" name="telefono_empresa" value="<?php echo $telefono_empresa ?>" class="form-control">
+												<input type="text" name="telefono_empresa" value="<?php echo $telefono_empresa ?>" class="form-control" id="telefono_empresa">
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputAddress2">Correo </label>
-												<input type="text" name="correo_empresa" value="<?php echo $correo_empresa ?>" class="form-control">
+												<input type="text" name="correo_empresa" value="<?php echo $correo_empresa ?>" class="form-control" id="correo_empresa">
 											</div>
 										</div>
 									</div>
-									<button type="submit" form="edititemform" name="btnedit" class="btn btn-success btn-block"><i class="fas fa-2x fa-save"></i>&nbsp;Guardar Cambios</button>
+									<button type="button" form="edititemform" name="btnedit" id="btnedit" class="btn btn-success btn-block"><i class="fas fa-2x fa-save"></i>&nbsp;Guardar Cambios</button>
 								</form>
 							</div>
 						</div>

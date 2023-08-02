@@ -1,13 +1,9 @@
 <?php
 include('admin/includes/connection.php');
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 require 'admin/mail/autoload.php';
+require ('admin/includes/configmail.php');
 
-require 'admin/includes/config_mail.php';
+
 
 $mail->setFrom('dissel@aylriesgosyseguros.com', 'Seguridad Dissel');
     //$mail->addAddress($email);
@@ -113,7 +109,7 @@ echo 'Correo enviado';
 $query = "INSERT INTO vencimiento(fecha_vencimiento) VALUES ('$fechaActual')";
 if ($sqlconnection->query($query) === TRUE) {
      echo "<script> 
-     window.location.href='../index.php'; </script>";
+     window.location.href='index.php'; </script>";
 
  }else {              //handle
     echo "Error al guardar los datos";

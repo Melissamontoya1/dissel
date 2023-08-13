@@ -18,7 +18,6 @@ if (mysqli_num_rows($result) > 0) {
 		$lastname = $row['lastname'];
 		$email = $row['email'];
 		$role= $row['role'];
-		//$image = $row['image'];
 		if (password_verify($password, $pass )) {
 			$_SESSION['id']= $id;
 			$_SESSION['identificacion']= $identificacion;
@@ -35,14 +34,13 @@ if (mysqli_num_rows($result) > 0) {
 
 		}
 	}
-}
-else {
+}else{
 			echo "<script>alert('usuario / contraseña invalida');
 			window.location.href= 'index.php';</script>";
 
 		}
-}
-else {
+}else{
 	header('location: index.php');
 }
+
 ?>

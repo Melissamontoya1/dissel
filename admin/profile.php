@@ -1,7 +1,6 @@
 <?php
 include 'includes/adminheader.php';
 include 'includes/adminnav.php';
-
 if (isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
 	$query = "SELECT * FROM users WHERE username = '$username'" ; 

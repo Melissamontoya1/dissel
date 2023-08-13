@@ -1,20 +1,16 @@
 <?php
 include "includes/adminheader.php";
 include ('includes/adminnav.php');
-
 ?>
 <div class="wrapper">
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
-
 		<!-- Main content -->
 		<?php   if ($rol=="superadmin") { ?>
 			<section class="content">
 				<div class="container-fluid">
 					<!-- Small boxes (Stat box) -->
 					<div class="card shadow mb-4">
-
-						
 						<div class="card-body">
 							<div class="col-md-12">
 								<div class="card-header bg-navy">

@@ -1,8 +1,6 @@
 <?php include "includes/header.php";
 include('verificar_vencimiento.php');
  ?>
-
-
 <div class="container">
 
  <!-- Outer Row -->

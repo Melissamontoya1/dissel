@@ -1,16 +1,8 @@
 <?php
 include "includes/adminheader.php";
-include ('includes/adminnav.php');
-
+include('includes/adminnav.php');
 ?>
 <div class="wrapper">
-
-  <!-- Preloader -->
-<!--   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div> -->
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -30,17 +22,16 @@ include ('includes/adminnav.php');
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
     <!-- Main content -->
-    <?php   if ($rol=="superadmin") { ?>
+    <?php if ($rol == "superadmin") { ?>
       <section class="content">
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <div class="row">
             <div class="col-lg-3 col-md-4">
               <!-- small box -->
-              <?php 
-              if ($estado_empresa<>"Inactiva") { ?>
+              <?php
+              if ($estado_empresa <> "Inactiva") { ?>
                 <?php
                 $query = "SELECT * FROM users WHERE id_empresa_fk='{$id_empresa}'";
                 $result = mysqli_query($sqlconnection, $query) or die(mysqli_error($sqlconnection));
@@ -48,7 +39,7 @@ include ('includes/adminnav.php');
                 ?>
                 <div class="small-box bg-info">
                   <div class="inner">
-                    <h3><?php  echo "{$user_num}"; ?></h3>
+                    <h3><?php echo "{$user_num}"; ?></h3>
 
                     <p>Usuarios</p>
                   </div>
@@ -63,8 +54,8 @@ include ('includes/adminnav.php');
             </div>
             <div class="col-lg-3 col-md-4">
               <!-- small box -->
-              <?php 
-              if ($estado_empresa<>"Inactiva") { ?>
+              <?php
+              if ($estado_empresa <> "Inactiva") { ?>
                 <?php
                 $query = "SELECT * FROM vehiculo  ";
                 $result = mysqli_query($sqlconnection, $query) or die(mysqli_error($sqlconnection));
@@ -72,12 +63,12 @@ include ('includes/adminnav.php');
                 ?>
                 <div class="small-box bg-primary">
                   <div class="inner">
-                    <h3><?php  echo "{$num_soat}"; ?></h3>
+                    <h3><?php echo "{$num_soat}"; ?></h3>
 
                     <p>SOAT</p>
                   </div>
                   <div class="icon">
-                   <i class="fas fa-car-crash"></i>
+                    <i class="fas fa-car-crash"></i>
                   </div>
                   <a href="./soat.php" class="small-box-footer">Más informacíón<i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -85,11 +76,11 @@ include ('includes/adminnav.php');
 
               <?php } ?>
             </div>
-           
-                  <div class="col-lg-3 col-md-4">
+
+            <div class="col-lg-3 col-md-4">
               <!-- small box -->
-              <?php 
-              if ($estado_empresa<>"Inactiva") { ?>
+              <?php
+              if ($estado_empresa <> "Inactiva") { ?>
                 <?php
                 $query = "SELECT * FROM vehiculo ";
                 $result = mysqli_query($sqlconnection, $query) or die(mysqli_error($sqlconnection));
@@ -97,7 +88,7 @@ include ('includes/adminnav.php');
                 ?>
                 <div class="small-box bg-primary">
                   <div class="inner">
-                    <h3><?php  echo "{$num_soat}"; ?></h3>
+                    <h3><?php echo "{$num_soat}"; ?></h3>
 
                     <p>TECNO/MECANICA</p>
                   </div>
@@ -116,12 +107,12 @@ include ('includes/adminnav.php');
           <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
       </section>
-    <?php    }else{ ?>
+    <?php    } else { ?>
       <br>
       <h4 class="text-center">Bienvenido <?php echo $_SESSION['firstname'] ?> recuerda realizar tus registros a tiempo</h4>
-      <div class="tab-pane" id="asignados" >
-        <?php 
-        $id=$_SESSION['id'];
+      <div class="tab-pane" id="asignados">
+        <?php
+        $id = $_SESSION['id'];
         $displayStaffQuery = "SELECT v.id_vehiculo, v.placa, v.color, v.marca, v.motor, v.modelo, v.soat, v.tecnomecanica, v.rodamiento, v.ciudad, v.estado, v.observaciones_vehiculo,u.id, u.identificacion, u.username, u.firstname, u.lastname, u.email, u.password, u.role, u.id_empresa_fk, av.id_asignacion,av.fecha_asignacion, av.id_vehiculo_fk, av.id_usuario_fk, av.estado_asignacion FROM asignacion_vehiculo av
         INNER JOIN users u
         ON av.id_usuario_fk=u.id 
@@ -136,20 +127,19 @@ include ('includes/adminnav.php');
             <h5><i class="icon fas fa-info"></i> Atención!</h5>
             Actualmente no hay ningun vehiculo asignado.
             </div>';
-
           }
-                               //CONTADOR PARA QUE EL PRIMER SLIDER SEA EL ACTIVO
+          //CONTADOR PARA QUE EL PRIMER SLIDER SEA EL ACTIVO
 
-          while($filam = $result33->fetch_array(MYSQLI_ASSOC)) {
-            $id_vehiculo=$filam['id_vehiculo'];
-            $placa=$filam['placa'];
-            $estado=$filam['estado'];
-            $ciudad=$filam['ciudad'];
-            $color=$filam['color'];
-            $firstname=$filam['firstname'];
-            $identificacion=$filam['identificacion'];
-            ?>
-            <div class="col-md-4 col-sm-6 col-xs-3 " hidden> 
+          while ($filam = $result33->fetch_array(MYSQLI_ASSOC)) {
+            $id_vehiculo = $filam['id_vehiculo'];
+            $placa = $filam['placa'];
+            $estado = $filam['estado'];
+            $ciudad = $filam['ciudad'];
+            $color = $filam['color'];
+            $firstname = $filam['firstname'];
+            $identificacion = $filam['identificacion'];
+        ?>
+            <div class="col-md-4 col-sm-6 col-xs-3 " hidden>
               <div class="card-body">
                 <div class="info-box bg-navy">
                   <span class="info-box-icon"><i class="fas fa-motorcycle nav-icon"></i></span>
@@ -159,15 +149,12 @@ include ('includes/adminnav.php');
                     <span class="info-box-number"><?php echo $identificacion ?></span>
                     <span class="info-box-number"><?php echo $firstname ?></span>
                     <span class="info-box-number"><?php echo $ciudad ?></span>
-
-
                   </div>
-
                   <!-- /.info-box-content -->
                 </div>
                 <div class="col-md-12 card">
                   <div class="row">
-                    <div class="col-md-12">  
+                    <div class="col-md-12">
                       <a href="order.php?id_mesa=<?php echo $fila['id_vehiculo']; ?>"><button class="btn btn-primary  col-sm-12 col-md-12" title="Realizar Registro Preoperativo"><i class="fas fa-clipboard-check"> </i>Registro Preoperativo</button></a>
                     </div>
                     <div class="col-md-12">
@@ -178,31 +165,21 @@ include ('includes/adminnav.php');
                 <!-- /.info-box -->
               </div>
             </div>
-
-
-
-
-            <?php  
-
-
-          } } 
-
-
-
-        }?>
-
-        <!-- /.content -->
+      <?php
+          }
+        }
+      }
+      ?>
+      <!-- /.content -->
       </div>
-
-
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
         <!-- Control sidebar content goes here -->
       </aside>
       <!-- /.control-sidebar -->
-    </div>
-    <!-- ./wrapper -->
-
-    <?php include "includes/adminfooter.php"; ?>
+  </div>
+  <!-- ./wrapper -->
+  <?php include "includes/adminfooter.php"; ?>
   </body>
+
   </html>

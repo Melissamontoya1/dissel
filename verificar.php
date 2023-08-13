@@ -4,9 +4,7 @@ if( isset($_GET['email'])  && isset($_GET['token']) ){
     $token=$_GET['token'];
 }else{
     header("Location: ./index.php");
-}
-
-?>
+} ?>
 
 <!DOCTYPE html>
 <html lang="en">

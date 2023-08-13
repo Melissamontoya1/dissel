@@ -1,41 +1,36 @@
 <?php
 
 include('includes/adminheader.php');
-include ('includes/adminnav.php');
-include ('includes/control_empresas.php');
+include('includes/adminnav.php');
+include('includes/control_empresas.php');
 
 if (isset($_SESSION['role'])) {
 	$currentrole = $_SESSION['role'];
 }
-if ( $currentrole == 'user' OR $currentrole == 'administrador' ) {
+if ($currentrole == 'user' or $currentrole == 'administrador') {
 	echo "<script> alert('Solo los Administradores pueden agregar Usuarios');
 	window.location.href='./index.php'; </script>";
-}
-else {
+} else {
 	//ACCIONES
 
 }
 if (isset($_POST['logo'])) {
-	$nombre_archivo=$_FILES['archivo']['name'];
-	$guardar_img=$_FILES['archivo']['tmp_name'];
+	$nombre_archivo = $_FILES['archivo']['name'];
+	$guardar_img = $_FILES['archivo']['tmp_name'];
 
-	if (move_uploaded_file($guardar_img,'img/'.$nombre_archivo )) {
-		$updateItemQuery = "UPDATE empresa SET logotipo_empresa = '{$nombre_archivo}'  WHERE id_empresa = '".$id_empresa['id_empresa']."'";
+	if (move_uploaded_file($guardar_img, 'img/' . $nombre_archivo)) {
+		$updateItemQuery = "UPDATE empresa SET logotipo_empresa = '{$nombre_archivo}'  WHERE id_empresa = '" . $id_empresa['id_empresa'] . "'";
 
 		if ($sqlconnection->query($updateItemQuery) === TRUE) {
 			echo "<script>alert('Logo actualizado satisfactoriamente');
 			window.location.href= 'empresa.php';</script>";
-
-		} 
-
-		else {
-        //handle
+		} else {
+			//handle
 			echo "someting wong";
 			echo $sqlconnection->error;
 			echo $updateItemQuery;
 		}
 	}
-
 }
 ?>
 
@@ -62,15 +57,14 @@ if (isset($_POST['logo'])) {
 	<section class="content">
 		<div class="container-fluid">
 			<!--SOLO EL ROL SUPERADMINISTRADOR PUEDE ACCEDER A ESTA SESION -->
-			<?php if($_SESSION['role'] == 'superadmin')  
-			{ ?>
+			<?php if ($_SESSION['role'] == 'superadmin') { ?>
 
-				
+
 				<div id="accordion">
 					<div class="card">
 						<div class="card-header" id="headingOne">
 							<h5 class="mb-0">
-								<button class="btn btn-primary btn-block text-left" data-toggle="collapse" data-target="#collapseOne"  aria-controls="collapseOne">
+								<button class="btn btn-primary btn-block text-left" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">
 									<i class="fas fa-2x fa-building"></i>
 									Datos de la Empresa
 								</button>
@@ -79,7 +73,7 @@ if (isset($_POST['logo'])) {
 
 						<div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
 							<div class="card-body">
-								<form  id="edititemform" action="" method="POST">
+								<form id="edititemform" action="" method="POST">
 									<div class="form-row border-bottom-info">
 										<div class="form-group col-md-6">
 											<input type="hidden" name="id_empresa" class="form-control ">
@@ -114,17 +108,17 @@ if (isset($_POST['logo'])) {
 										<div class="form-group col-md-6">
 
 											<label for="inputEmail4">Actividad Económica</label>
-											<input type="text" name="actividad_empresa" class="form-control" >
+											<input type="text" name="actividad_empresa" class="form-control">
 										</div>
 
 										<div class="form-group col-md-6">
 											<label for="inputEmail4">Codigo CIIU </label>
-											<input type="text" name="codigo_ciiu_empresa"  class="form-control ">	
-										</div>	
+											<input type="text" name="codigo_ciiu_empresa" class="form-control ">
+										</div>
 										<div class="form-group col-md-6">
-											<label for="inputEmail4"> ARL  </label>
-											<input type="text" name="codigo_arl_empresa"  class="form-control ">	
-										</div>	
+											<label for="inputEmail4"> ARL </label>
+											<input type="text" name="codigo_arl_empresa" class="form-control ">
+										</div>
 										<div class="form-group col-md-6">
 											<label for="inputEmail4">Tipo de Riesgo </label>
 											<select name="riesgo_empresa" id="" class="form-control">
@@ -133,8 +127,8 @@ if (isset($_POST['logo'])) {
 												<option value="3">III</option>
 												<option value="4">IV</option>
 												<option value="5">V</option>
-											</select>	
-										</div>	
+											</select>
+										</div>
 
 									</div>
 									<h4 class="m-2 font-weight-bold text-warning text-center">Datos del Gerente</h4>
@@ -151,10 +145,10 @@ if (isset($_POST['logo'])) {
 										</div>
 										<div class="form-group col-md-6">
 											<label for="inputEmail4">Cumpleaños Gerente</label>
-											<input type="date" name="cumple_gerente"  class="form-control ">	
-										</div>	
+											<input type="date" name="cumple_gerente" class="form-control ">
+										</div>
 									</div>
-									<?php if ($tipo_empresa=="Alquiler") { ?>
+									<?php if ($tipo_empresa == "Alquiler") { ?>
 										<h4 class="m-2 font-weight-bold text-warning text-center">Ciclo de Facturación</h4>
 
 										<div class="form-row border-bottom-success">
@@ -175,11 +169,11 @@ if (isset($_POST['logo'])) {
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputEmail4">Fecha Inicial de Facturación</label>
-												<input type="date" name="fecha_inicio" class="form-control " >
+												<input type="date" name="fecha_inicio" class="form-control ">
 											</div>
 											<div class="form-group col-md-6">
 												<label for="inputEmail4">Fecha Final de Facturación</label>
-												<input type="date" name="fecha_fin"  class="form-control " >
+												<input type="date" name="fecha_fin" class="form-control ">
 											</div>
 
 
@@ -198,28 +192,29 @@ if (isset($_POST['logo'])) {
 
 									<?php } ?>
 
-								</div>
+							</div>
 
-								<button type="submit" form="edititemform" name="guardar_empresa" class="btn btn-success btn-block">
-									<i class="fas fa-2x fa-save"></i>&nbsp;
+							<button type="submit" form="edititemform" name="guardar_empresa" class="btn btn-success btn-block">
+								<i class="fas fa-2x fa-save"></i>&nbsp;
 								Guardar Cambios</button>
 							</form>
 						</div>
 					</div>
 				</div>
 
-			<?php }?>
+			<?php } ?>
 
-		</div> 
+		</div>
 		<div>
 
 			<div class="col-lg-12">
 				<div class="card mb-3">
 					<div class="card-header bg-navy">
 						<i class="fas fa-list-alt"></i>
-					Lista Actual de Empresas</div>
+						Lista Actual de Empresas
+					</div>
 					<div class="card-body">
-						<table class="display table table-bordered text-center"  width="100%" cellspacing="0">
+						<table class="display table table-bordered text-center" width="100%" cellspacing="0">
 							<thead>
 								<tr>
 									<th>NIT</th>
@@ -231,17 +226,17 @@ if (isset($_POST['logo'])) {
 								</tr>
 							</thead>
 							<tbody>
-								<?php 
+								<?php
 
 								$empresas = "SELECT * FROM empresa ORDER BY id_empresa DESC ";
 
 								if ($result = $sqlconnection->query($empresas)) {
 
 									if ($result->num_rows == 0) {
-                      //echo "<td colspan='4'>There are currently no staff.</td>";
+										//echo "<td colspan='4'>There are currently no staff.</td>";
 									}
-									while($rempresa = $result->fetch_array(MYSQLI_ASSOC)) {
-										?>  
+									while ($rempresa = $result->fetch_array(MYSQLI_ASSOC)) {
+								?>
 										<tr class="text-center">
 
 											<td><?php echo $rempresa['id_empresa']; ?></td>
@@ -257,11 +252,9 @@ if (isset($_POST['logo'])) {
 											</td>
 										</tr>
 
-										<?php 
+								<?php
 									}
-
-								}
-								else {
+								} else {
 									echo $sqlconnection->error;
 									echo "Error";
 								}
@@ -275,17 +268,17 @@ if (isset($_POST['logo'])) {
 				</div>
 			</div>
 		</div>
-		</div><!-- DIV QUE CIERRA EL CONTENEDOR DEL NAV -->
+</div><!-- DIV QUE CIERRA EL CONTENEDOR DEL NAV -->
 
-	</section>
+</section>
 </div>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-	if (window.history.replaceState) { // verificamos disponibilidad
-		window.history.replaceState(null, null, window.location.href);
-	}
-}
+	$(document).ready(function() {
+		if (window.history.replaceState) { // verificamos disponibilidad
+			window.history.replaceState(null, null, window.location.href);
+		}
+	})
 </script>
 
-<?php include ('includes/adminfooter.php');?>
+<?php include 'includes/adminfooter.php'; ?>

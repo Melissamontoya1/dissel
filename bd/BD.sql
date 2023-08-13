@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-07-2023 a las 16:00:41
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 8.0.1
+-- Tiempo de generación: 13-08-2023 a las 22:32:53
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,9 +33,7 @@ CREATE TABLE `asignacion_vehiculo` (
   `id_vehiculo_fk` int(11) NOT NULL,
   `id_usuario_fk` int(11) NOT NULL,
   `estado_asignacion` enum('Activo','Inactivo') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -45,41 +43,41 @@ CREATE TABLE `asignacion_vehiculo` (
 
 CREATE TABLE `correos` (
   `id_correo` int(11) NOT NULL,
-  `titulo_correo` text COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `mensaje_correo` text COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `archivo_correo` text COLLATE utf8mb4_spanish2_ci NOT NULL
+  `titulo_correo` text NOT NULL,
+  `mensaje_correo` text NOT NULL,
+  `archivo_correo` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
-
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `empresa`
 --
 
 CREATE TABLE `empresa` (
-  `id_empresa` char(15) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `nombre_empresa` text COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `siglas_empresa` varchar(20) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `direccion_empresa` varchar(400) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `telefono_empresa` varchar(14) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `correo_empresa` varchar(200) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `gerente_empresa` varchar(200) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `id_empresa` char(15) NOT NULL,
+  `nombre_empresa` text NOT NULL,
+  `siglas_empresa` varchar(20) NOT NULL,
+  `direccion_empresa` varchar(400) NOT NULL,
+  `telefono_empresa` varchar(14) NOT NULL,
+  `correo_empresa` varchar(200) NOT NULL,
+  `gerente_empresa` varchar(200) NOT NULL,
   `cumple_gerente` date NOT NULL,
-  `cedula_gerente` varchar(20) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `logotipo_empresa` text COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `tipo_empresa` enum('Alquiler','Venta','Cliente','') COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `cedula_gerente` varchar(20) NOT NULL,
+  `logotipo_empresa` text NOT NULL,
+  `tipo_empresa` enum('Alquiler','Venta','Cliente','') NOT NULL,
   `fecha_inicio` date DEFAULT NULL,
   `fecha_fin` date DEFAULT NULL,
-  `estado_empresa` enum('Activa','Inactiva','','') COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `actividad_empresa` text COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `estado_empresa` enum('Activa','Inactiva','','') NOT NULL,
+  `actividad_empresa` text NOT NULL,
   `codigo_ciiu_empresa` int(11) NOT NULL,
-  `codigo_arl_empresa` varchar(100) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `riesgo_empresa` enum('1','2','3','4','5') COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `registro_fotografico` enum('si','no') COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `firma_gerente` text COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `cedula_representante` varchar(20) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `nombre_representante` varchar(200) COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `firma_representante` text COLLATE utf8mb4_spanish2_ci NOT NULL
+  `codigo_arl_empresa` varchar(100) NOT NULL,
+  `riesgo_empresa` enum('1','2','3','4','5') NOT NULL,
+  `registro_fotografico` enum('si','no') NOT NULL,
+  `firma_gerente` text NOT NULL,
+  `cedula_representante` varchar(20) NOT NULL,
+  `nombre_representante` varchar(200) NOT NULL,
+  `firma_representante` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
@@ -87,7 +85,7 @@ CREATE TABLE `empresa` (
 --
 
 INSERT INTO `empresa` (`id_empresa`, `nombre_empresa`, `siglas_empresa`, `direccion_empresa`, `telefono_empresa`, `correo_empresa`, `gerente_empresa`, `cumple_gerente`, `cedula_gerente`, `logotipo_empresa`, `tipo_empresa`, `fecha_inicio`, `fecha_fin`, `estado_empresa`, `actividad_empresa`, `codigo_ciiu_empresa`, `codigo_arl_empresa`, `riesgo_empresa`, `registro_fotografico`, `firma_gerente`, `cedula_representante`, `nombre_representante`, `firma_representante`) VALUES
-('1', 'Seguridad Dissel Ltda ', 'A&L', 'Edificio Guayacal', '3017608465', 'yumemogu@gmail.com', 'Luz Eugenia', '2012-02-24', '545', 'logo.png', 'Alquiler', '2022-02-01', '2022-02-28', 'Activa', '1', 1, '1', '1', 'si', 'firma.png', '1087561072', 'Melissa', 'logo-negro-bloque.png');
+('1', 'Seguridad Dissel Ltda', 'SD', 'Direccion', '12345', 'correo@gmail.com', 'Nombre gerente', '2012-02-24', '000', 'logo.png', 'Alquiler', '2022-02-01', '2022-02-28', 'Activa', '1', 1, '1', '1', 'si', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -120,9 +118,11 @@ CREATE TABLE `registro` (
   `observaciones` text NOT NULL,
   `firma` varchar(255) NOT NULL,
   `id_vehiculo_a_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
 
+--
 -- Estructura de tabla para la tabla `tokens`
 --
 
@@ -131,9 +131,7 @@ CREATE TABLE `tokens` (
   `email` varchar(200) NOT NULL,
   `token` text NOT NULL,
   `codigo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -151,14 +149,14 @@ CREATE TABLE `users` (
   `password` varchar(225) NOT NULL,
   `role` varchar(225) NOT NULL DEFAULT 'user',
   `id_empresa_fk` char(15) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `identificacion`, `username`, `firstname`, `lastname`, `email`, `password`, `role`, `id_empresa_fk`) VALUES
-(37, '88', 'superadmin', 'Administrador', '', 'dissel@gmail.com', '$2y$10$ZgiHzXbn1coS1LHZgLGrNuH3RVdbFtGs7XJ9iH6jA0CCeHz6ZW7Si', 'superadmin', '1'),
+(37, '88', 'superadmin', 'Administrador', '', 'dissel@gmail.com', '$2y$10$ZgiHzXbn1coS1LHZgLGrNuH3RVdbFtGs7XJ9iH6jA0CCeHz6ZW7Si', 'superadmin', '1');
 
 -- --------------------------------------------------------
 
@@ -179,8 +177,7 @@ CREATE TABLE `vehiculo` (
   `ciudad` varchar(50) NOT NULL,
   `estado` enum('Habilitado','Inhabilitado','Reparacion') NOT NULL,
   `observaciones_vehiculo` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -191,8 +188,11 @@ CREATE TABLE `vehiculo` (
 CREATE TABLE `vencimiento` (
   `id_vencimiento` int(11) NOT NULL,
   `fecha_vencimiento` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Índices para tablas volcadas
+--
 
 --
 -- Indices de la tabla `asignacion_vehiculo`
@@ -277,7 +277,7 @@ ALTER TABLE `tokens`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de la tabla `vehiculo`
@@ -289,7 +289,7 @@ ALTER TABLE `vehiculo`
 -- AUTO_INCREMENT de la tabla `vencimiento`
 --
 ALTER TABLE `vencimiento`
-  MODIFY `id_vencimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_vencimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

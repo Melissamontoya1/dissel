@@ -2,13 +2,8 @@
 include('admin/includes/connection.php');
 require 'admin/mail/autoload.php';
 require ('admin/includes/configmail.php');
-
-
-
 $mail->setFrom('dissel@aylriesgosyseguros.com', 'Seguridad Dissel');
     //$mail->addAddress($email);
-
-
 $empresas = "SELECT * FROM users WHERE role ='superadmin'";
 
 if ($result = $sqlconnection->query($empresas)) {

@@ -1,6 +1,5 @@
 <?php
 include('includes/connection.php');
-
 require('fpdf/fpdf.php');
 date_default_timezone_set('America/Bogota');
 class PDF extends FPDF
@@ -12,18 +11,14 @@ class PDF extends FPDF
 		$this->Image('img/logo.png',240,4,30);
 		$this->SetY(15);
 		$this->SetX(19);
-
 		$this->SetFont('Arial','B',20);
 		$this->Cell(89, 8,  utf8_decode('SISTEMA DE GESTIÓN DE SEGURIDAD VIAL'),0,1);
 		$this->SetY(20);
 		$this->SetX(19);
 		$this->SetFont('Arial','',12);
 		$this->Cell(40, 8, utf8_decode('REGISTRO PREOPERATIVO'));
-
 		$this->Ln(5);
-
 	}
-
 	function Footer()
 	{
 		$this->SetFont('helvetica', 'B', 8);
@@ -56,12 +51,7 @@ class PDF extends FPDF
 }
 
 $id_registro=$_GET['id_registro'];
-
-
-
 $pdf = new PDF('L','mm','A4');
-
-
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetDrawColor(33, 47, 61); // Color rojo
@@ -71,15 +61,11 @@ $pdf->SetFillColor(255, 255, 255); // Establecer el color de relleno en blanco
  $pdf->Line(0, 45, 340, 45); // 50mm from each edge
      // Salto de línea
  $pdf->Ln(30);
-
-
 //CUERPO DE LA TABLA
 $pdf->SetFillColor(233, 229, 235);//color de fondo rgb
 $pdf->SetDrawColor(61, 61, 61);//color de linea  rgb
 $pdf->SetFont('Arial','',10);
-
-
-$displayStaffQuery = "SELECT r.id_registro, r.placa_casco, r.fecha_registro, r.baja, r.alta, r.stop, r.direccionales, r.pito, r.frenos, r.guaya_acelerador, r.guaya_clutch, r.estado_llantas, r.nivel_aceite, r.kit_arrastre, r.chaleco, r.espejos, r.combustible, r.boton_panico, r.soat, r.tecnomecanica, r.tarjeta_propiedad, r.observaciones, r.firma, id_vehiculo_a_fk,va.id_asignacion, va.fecha_asignacion, va.id_vehiculo_fk, va.id_usuario_fk,u.id, u.identificacion, u.username, u.firstname,u.email,v.id_vehiculo, v.placa, v.color, v.marca, v.motor, v.modelo, v.soat, v.tecnomecanica, v.rodamiento,v.ciudad, v.estado, v.observaciones_vehiculo FROM registro r
+$displayStaffQuery = "SELECT r.id_registro, r.placa_casco, r.fecha_registro, r.baja, r.alta, r.stop, r.direccionales, r.pito, r.frenos, r.guaya_acelerador, r.guaya_clutch, r.estado_llantas, r.nivel_aceite, r.kit_arrastre, r.chaleco, r.espejos, r.combustible, r.boton_panico, r.soat, r.tecnomecanica, r.tarjeta_propiedad, r.observaciones, r.firma, r.id_vehiculo_a_fk,va.id_asignacion, va.fecha_asignacion, va.id_vehiculo_fk, va.id_usuario_fk,u.id, u.identificacion, u.username, u.firstname,u.lastname,u.email,v.id_vehiculo, v.placa, v.color, v.marca, v.motor, v.modelo, v.soat, v.tecnomecanica, v.rodamiento,v.ciudad, v.estado, v.observaciones_vehiculo FROM registro r
 INNER JOIN asignacion_vehiculo va
 ON r.id_vehiculo_a_fk=va.id_asignacion
 INNER JOIN users u 
@@ -97,8 +83,7 @@ if ($result33 = $sqlconnection->query($displayStaffQuery)) {
 		</div>';
 
 	}
-                               //CONTADOR PARA QUE EL PRIMER SLIDER SEA EL ACTIVO
-
+    //CONTADOR PARA QUE EL PRIMER SLIDER SEA EL ACTIVO
 	while($filam = $result33->fetch_array(MYSQLI_ASSOC)) {
 		$fecha_registro=$filam['fecha_registro'];
 		$placa=$filam['placa'];
@@ -108,9 +93,8 @@ if ($result33 = $sqlconnection->query($displayStaffQuery)) {
 		$firstname=$filam['firstname'];
 		$identificacion=$filam['identificacion'];
 		$id_registro=$filam['id_registro'];
-		$firstname=$filam['firstname'];
+		$lastname=$filam['lastname'];
 		$firma=$filam['firma'];
-
 		$baja=$filam['baja']; 
 		$alta=$filam['alta'];
 		$stop=$filam['stop'];
@@ -130,9 +114,6 @@ if ($result33 = $sqlconnection->query($displayStaffQuery)) {
 		$tecnomecanica=$filam['tecnomecanica'];
 		$tarjeta_propiedad=$filam['tarjeta_propiedad'];
 		$observaciones=$filam['observaciones'];
-
-
-
 	$header = array('  Fecha Registro : '.$fecha_registro. '', 'Identificacion : '.$identificacion.'', 'Conductor : '.$firstname.' '.$lastname.'','PLACA : '.$placa);
 $data = array(
     array('Guaya de Clutch : '.$guaya_clutch. '', 'Luz Baja : '.$baja. '', 'Luz Alta : '.$alta.'','Stop : '.$stop.''),
@@ -142,22 +123,14 @@ $data = array(
     array('Tecno/Mecanica : '.$tecnomecanica.'','Tarjeta de Propiedad : '.$tarjeta_propiedad.'','Observaciones: '.$observaciones.'','Ciudad: '.$ciudad.'')
 );
 $pdf->HorizontalTable($header, $data);
-
-
 	}
 }
-
-
-
 if($firma!=""){
 	$pdf->Image('firmas/'.$firma, 50, 155,  150, 27);
 }
-
 $pdf->setY(180);
 $pdf->setX(10);
 $pdf->Cell(5,0,'FIRMA CONDUCTOR ___________________________________________________________________________________________________.' );
-
-
 
 
 $pdf->Output();

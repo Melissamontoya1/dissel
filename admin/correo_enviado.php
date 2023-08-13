@@ -1,9 +1,7 @@
-<?php 
-
+<?php
 include('includes/adminheader.php');
-include ('includes/adminnav.php');
+include('includes/adminnav.php');
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -22,7 +20,6 @@ include ('includes/adminnav.php');
 			</div>
 		</div><!-- /.container-fluid -->
 	</section>
-
 	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid">
@@ -30,10 +27,8 @@ include ('includes/adminnav.php');
 				<h4>Correo Enviado con Exito</h4>
 				<p>Revisa la bandeja de salida para comprobarlo</p>
 			</div>
-
 		</div><!-- DIV QUE CIERRA EL CONTENEDOR DEL NAV -->
 		<!-- MODAL PARA EDITAR ROL-->
-
 	</section>
 </div>
-<?php include ('includes/adminfooter.php');?>
+<?php include('includes/adminfooter.php'); ?>

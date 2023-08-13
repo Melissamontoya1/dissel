@@ -1,20 +1,16 @@
 <?php
 include "includes/adminheader.php";
 include ('includes/adminnav.php');
-
 ?>
 <div class="wrapper">
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
-
 		<!-- Main content -->
 		<?php   if ($rol=="superadmin") { ?>
 			<section class="content">
 				<div class="container-fluid">
 					<!-- Small boxes (Stat box) -->
 					<div class="card shadow mb-4">
-
-						
 						<div class="card-body">
 							<div class="col-md-12">
 								<div class="card-header bg-navy">
@@ -52,9 +48,7 @@ include ('includes/adminnav.php');
 
 												}
                                //CONTADOR PARA QUE EL PRIMER SLIDER SEA EL ACTIVO
-
 												while($filam = $result33->fetch_array(MYSQLI_ASSOC)) {
-													
 													$placa=$filam['placa'];
 													$color=$filam['color'];
 													$marca=$filam['marca'];
@@ -62,7 +56,6 @@ include ('includes/adminnav.php');
 													$modelo=$filam['modelo'];
 													$soat=$filam['soat'];
 													$tecnomecanica=$filam['tecnomecanica'];
-
 													?>
 													<tr class="text-center">
 														<td><?php echo $placa; ?></td>
@@ -72,8 +65,6 @@ include ('includes/adminnav.php');
 														<td><?php echo $modelo; ?></td>
 														<td><?php echo $tecnomecanica; ?></td>
 														<td><?php echo $soat; ?></td>
-														
-
 													<!-- 	<td class="text-center">
 															<a href="plantilla.php?id_registro=<?php echo $id_registro ?>" title="Ver Formato" target="_blank"><button class="btn bg-success"><i class="fas fa-print"></i></button></a>
 

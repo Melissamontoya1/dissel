@@ -1,46 +1,31 @@
-<?php 
-
+<?php
 include('includes/adminheader.php');
-include ('includes/adminnav.php');
-
-
+include('includes/adminnav.php');
 if (isset($_POST['correo_enviar'])) {
-	$archivo_correo=$_FILES['archivo_correo']['name'];
-	$guardar_pdf=$_FILES['archivo_correo']['tmp_name'];
-	$titulo_correo=$_POST['titulo_correo'];
-	$mensaje_correo=$_POST['mensaje_correo'];
-	
-	
-
-	if ($archivo_correo =="") {
+	$archivo_correo = $_FILES['archivo_correo']['name'];
+	$guardar_pdf = $_FILES['archivo_correo']['tmp_name'];
+	$titulo_correo = $_POST['titulo_correo'];
+	$mensaje_correo = $_POST['mensaje_correo'];
+	if ($archivo_correo == "") {
 		$query = "INSERT INTO correos (titulo_correo,mensaje_correo) VALUES ('$titulo_correo','$mensaje_correo')";
 		if ($sqlconnection->query($query) === TRUE) {
-			include_once ('detalle_correo.php');
-		}
-		else {
+			include_once('detalle_correo.php');
+		} else {
 			echo '<script>swal("ERROR!", "Lo sentimos ocurrió un error ", "error");</script>';
 		}
-		
-	}else{
-		if (move_uploaded_file($guardar_pdf,'./archivos_correo/'.$archivo_correo )) {
+	} else {
+		if (move_uploaded_file($guardar_pdf, './archivos_correo/' . $archivo_correo)) {
 
 			$query = "INSERT INTO correos (titulo_correo,mensaje_correo,archivo_correo) VALUES ('$titulo_correo','$mensaje_correo','$archivo_correo')";
 			if ($sqlconnection->query($query) === TRUE) {
-				include_once ('detalle_correo.php');
-			}
-			else {
+				include_once('detalle_correo.php');
+			} else {
 				echo '<script>swal("ERROR!", "Lo sentimos ocurrió un error ", "error");</script>';
 			}
-
 		}
-		
-
 	}
 }
-
-
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -59,14 +44,11 @@ if (isset($_POST['correo_enviar'])) {
 			</div>
 		</div><!-- /.container-fluid -->
 	</section>
-
 	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid">
-
 			<!-- Page Heading -->
 			<div class="row">
-
 				<div class="col-md-3">
 					<a href="#" class="btn btn-primary btn-block mb-3">Opciones</a>
 
@@ -93,12 +75,11 @@ if (isset($_POST['correo_enviar'])) {
 										<i class="far fa-envelope"></i> Correos Enviados
 									</a>
 								</li> -->
-								
+
 							</ul>
 						</div>
 						<!-- /.card-body -->
 					</div>
-		
 					<!-- /.card -->
 				</div>
 				<!-- /.col -->
@@ -109,44 +90,39 @@ if (isset($_POST['correo_enviar'])) {
 						</div>
 						<!-- /.card-header -->
 						<form role="form" method="POST" enctype="multipart/form-data" action="">
-						<div class="card-body">
-							<label for="">Titulo</label>
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Ingrese el titulo " name="titulo_correo">
-							</div>
+							<div class="card-body">
+								<label for="">Titulo</label>
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Ingrese el titulo " name="titulo_correo">
+								</div>
 
-							<div class="form-group">
-								<label for="">Mensaje del Correo</label>
-								<textarea id="compose-textarea" class="form-control" name="mensaje_correo"  style="height: 300px">
+								<div class="form-group">
+									<label for="">Mensaje del Correo</label>
+									<textarea id="compose-textarea" class="form-control" name="mensaje_correo" style="height: 300px">
 
 								</textarea>
-							</div>
-							<div class="form-group">
-								<div class="btn btn-default btn-file">
-									<i class="fas fa-paperclip"></i> Adjuntar Archivo
-									<input type="file" class="form-control" name="archivo_correo">
 								</div>
-								<p class="help-block">Max. 32MB</p>
+								<div class="form-group">
+									<div class="btn btn-default btn-file">
+										<i class="fas fa-paperclip"></i> Adjuntar Archivo
+										<input type="file" class="form-control" name="archivo_correo">
+									</div>
+									<p class="help-block">Max. 32MB</p>
+								</div>
 							</div>
-						</div>
-						<!-- /.card-body -->
-						<div class="card-footer">
-
-							<button type="submit" class="btn btn-success btn-block" name="correo_enviar"><i class="far fa-envelope"></i> Enviar Correo Electronico</button>
-
-
-						</div>
-					</form>
+							<!-- /.card-body -->
+							<div class="card-footer">
+								<button type="submit" class="btn btn-success btn-block" name="correo_enviar"><i class="far fa-envelope"></i> Enviar Correo Electronico</button>
+							</div>
+						</form>
 						<!-- /.card-footer -->
 					</div>
 					<!-- /.card -->
 				</div>
-
 			</div><!-- DIV QUE CIERRA EL CONTENEDOR DEL NAV -->
 			<!-- MODAL PARA EDITAR ROL-->
-		</section>
-	</div>
+	</section>
+</div>
 
 
-	<?php include ('includes/adminfooter.php');?>
-	
+<?php include('includes/adminfooter.php'); ?>

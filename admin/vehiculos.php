@@ -1,11 +1,7 @@
-<!-- AGREGAR LA CLASE GUMP CUANDO TENGAMOS EL NUEVO SERVIDOR Y ASI PODER PONER RESTRINGCIONES EL EL TEXTO PW Y DEMAS -->
 <?php
-
 include('includes/adminheader.php');
 include ('includes/adminnav.php');
-
 if (isset($_POST['registrar_vehiculo'])) {
-
 	$placa=$_POST['placa'];
 	$color = $_POST['color'];
 	$marca = $_POST['marca'];

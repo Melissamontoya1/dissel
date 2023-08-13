@@ -18,7 +18,7 @@ if (mysqli_num_rows($result) > 0) {
 		$lastname = $row['lastname'];
 		$email = $row['email'];
 		$role= $row['role'];
-		$image = $row['image'];
+		//$image = $row['image'];
 		if (password_verify($password, $pass )) {
 			$_SESSION['id']= $id;
 			$_SESSION['identificacion']= $identificacion;
@@ -27,7 +27,6 @@ if (mysqli_num_rows($result) > 0) {
 			$_SESSION['lastname'] = $lastname;
 			$_SESSION['email']  = $email;
 			$_SESSION['role'] = $role;
-			$_SESSION['image'] = $image;
 			header('location: admin');
 		}
 		else {

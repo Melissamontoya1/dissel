@@ -1,6 +1,4 @@
-<!-- AGREGAR LA CLASE GUMP CUANDO TENGAMOS EL NUEVO SERVIDOR Y ASI PODER PONER RESTRINGCIONES EL EL TEXTO PW Y DEMAS -->
 <?php
-
 include('includes/adminheader.php');
 include ('includes/adminnav.php');
 if (isset($_SESSION['role'])) {

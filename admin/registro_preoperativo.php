@@ -70,7 +70,7 @@ if ($currentrole == 'superasmin') {
 					}
 				}
 				$fecha = date('Y-m-d');
-				$titulo_correo = "REVISAR REGISTRO VEHICULO PLACA " . $placav . " DEL DIA" . $fecha;
+				$titulo_correo = "REVISAR REGISTRO VEHICULO PLACA " . $placav . " DEL DIA " . $fecha;
 				$mensaje_correo = "El registro Preoperativo del vehiculo con placas" . $placav . " contiene inconsistencias, por favor revisar el registro del dia " . $fecha . " para verificar las fallas alli reportadas";
 				include('reportar_incidente.php');
 			}
@@ -134,7 +134,7 @@ if ($currentrole == 'superasmin') {
 
 										$ciudad = $rw["ciudad"];
 									?>
-										<option value="<?php echo $id_asignacion ?>" name="id_vehiculo_a_fk"><?php echo $placa . " - " . $color . " - " . $marca . " - " . $ciudad; ?></option>
+										<option value="<?php echo $id_vehiculo ?>" name="id_vehiculo_a_fk"><?php echo $placa . " - " . $color . " - " . $marca . " - " . $ciudad; ?></option>
 									<?php
 									}
 									?>

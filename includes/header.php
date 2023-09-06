@@ -1,4 +1,6 @@
-<?php include('admin/includes/connection.php'); ?>
+<?php 
+include('admin/includes/connection.php');
+?>
 
 <!DOCTYPE html>
 <html lang="es">

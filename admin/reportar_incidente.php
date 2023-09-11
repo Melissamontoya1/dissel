@@ -11,11 +11,10 @@ if ($result = $sqlconnection->query($empresas)) {
 		}
 	}
     //$mail->addCC('yumemogu@gmail.com');
-    if ($archivo_correo=="") {
-    	
-    }else{
-    	$mail->addAttachment('archivos_correo/'.$archivo_correo, $archivo_correo);
-    }
+    //if ($archivo_correo=="") {	
+    //}else{
+    	//$mail->addAttachment('archivos_correo/'.$archivo_correo, $archivo_correo);
+    //}
 	$mail->isHTML(true);
 	$mail->Subject =  $titulo_correo;
 	$mail->Body =  $mensaje_correo;
